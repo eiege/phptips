@@ -30,7 +30,11 @@
     <div><input type="text" name="name" class="ck_name" value="myname" /></div>
     <div><input type="text" name="name" class="ck_pw" value="myupw" /></div>
     <div><input type="text" name="name" class="ck_pw_again" value="myupw" /></div>
-    <div><input type="text" name="name" class="ck_vc" value="vc" /></div>
+
+    <div>
+        <div><img src="vctest.php?gimg=getimg"></div>
+        <div><input type="text" name="vc" class="ck_vc" value="vc" /></div>
+    </div>
     <div></div>
     <div></div>
     <div><input type="submit" /></div>
