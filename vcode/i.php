@@ -14,8 +14,5 @@
 </head>
 <body>
 <img src="imgput.php" style="width:100px;height:50px;" />
-<?php
-echo $_SESSION[''];
-?>
 </body>
 </html>
