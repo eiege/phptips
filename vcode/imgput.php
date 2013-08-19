@@ -11,4 +11,7 @@
 
    require_once("vcode.php");
     $vcimg=new Vcode();
-    $vcimg->getVcimg("awFp");
+
+$rand_str=substr(md5(time()+rand(0,100)),0,4);
+//echo $rand_str;
+   $vcimg->getVcimg($rand_str);

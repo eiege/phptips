@@ -13,6 +13,9 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 </head>
 <body>
-<img src="http://localhost/jq/vcode/imgput.php" style="width:100px;height:50px;" />
+<img src="imgput.php" style="width:100px;height:50px;" />
+<?php
+echo $_SESSION[''];
+?>
 </body>
 </html>
