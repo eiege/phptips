@@ -8,7 +8,12 @@ $(document).ready(
             var fid=$(this).attr("id");
             //绑定的数据验证
             chk.vc_url="vctest.php";
-            chk.cf(fid);
+            var chkret=chk.cf(fid);
+           // window.alert("result:"+chkret);
+            if(!chkret)
+            {
+                return false;
+            }
             //ajax请求发送
             var req_str=$(this).serialize();
             ajm.pajax(act,req_str,fid+"msg");
@@ -54,6 +59,7 @@ var chk={
     fid:"",
     vc_url:"",//验证码请求url地址
     o:{},//当前处理的表单元素对象。
+    ckret:true,
     cf:function(fid){
         this.fid=fid;
         var ckitems=[
@@ -63,27 +69,34 @@ var chk={
             "ck_pw",//检查密码
             "ck_vc"
         ];
-        this.ck_fcall(ckitems);
+        return this.ck_fcall(ckitems);
 
     },
     //方法调用。
     ck_fcall:function(fn){
 
+        chk.ckret=true;//这里在每次调用方法之前重置ckret为true，因为是直接使用的chk的方法对象，因此，如果第一次错误，在下一次调用之前没有重置为true，那么chk.ckret的值还是false。
         for(var i in fn)
         {
             if(this.fid)
             {
                 var fitems=$("#"+this.fid+" ."+fn[i]);
                 fitems.each(function(){
-                    chk[fn[i]](this);
+                    var chk_ret=chk[fn[i]](this);
+                    if(chk_ret == false)
+                    {
+                        chk.ckret=false;
+                    }
+                   // window.alert(chk.ckret);
                 });
             }
             else{
                 window.alert("fid not defined");
+                chk.ckret=false;
             }
         }
 
-
+        return chk.ckret;
 
     },
 
@@ -94,9 +107,9 @@ var chk={
         var re=/^[0-9a-zA-Z]+[\w\.-]+[@]{1}[0-9a-zA-Z\.-]+[\.]+[a-zA-Z]+$/gi;
         if(re.test(iv))
         {//yes
-            this.setpass(o);
+            return this.setpass(o);
         }else{//no
-            this.setban(o);
+            return this.setban(o);
         }
 
     },
@@ -113,9 +126,9 @@ var chk={
         var len=iv.length;
         if(len<=maxlen && len>=minlen && re.test(iv))
         {
-            this.setpass(o);
+            return this.setpass(o);
         }else{
-            this.setban(o);
+            return this.setban(o);
         }
 
     },
@@ -133,9 +146,11 @@ var chk={
         {
             this.setpass(o);
             this.setpass(o_again);
+            return true;
         }else{
             this.setban(o);
             this.setban(o_again);
+            return false;
         }
 
     },
@@ -145,24 +160,34 @@ var chk={
         this.o=o;
         var vclen=4;
         var iv=$(o).val();
-        $.ajax({
-            type:"post",
-            url:chk.vc_url,
-            data:"vc="+iv,
-            success:function(d){
-                window.alert(d);
-                if(d==1)
-                {
-                    chk.setpass(chk.o);
-                }else{
-                    chk.setban(chk.o);
-                }
-            },
-            error:function()
-            {
-                chk.setban(chk.o);
-            }
-        });
+
+        if(iv.length !=vclen)
+        {
+            chk.setban(chk.o);
+           return false;
+        }
+        else{
+            chk.setpass(chk.o);
+            return true;
+        }
+
+        //ajax本来就是异步调用，调用ck_vc的地方，不会等待这里的ajax执行，验证码的验证，本来就是后端权限的验证，不需要再次多加一次请求。
+//        $.ajax({
+//            type: "post",
+//            url: chk.vc_url,
+//            data: "vc=" + iv,
+//            success: function (d) {
+//                //window.alert(d);
+//                if (d == 1) {
+//                    return chk.setpass(chk.o);
+//                } else {
+//                    return chk.setban(chk.o);
+//                }
+//            },
+//            error: function () {
+//                return chk.setban(chk.o);
+//            }
+//        });
     },
 
     ck_num:function(o){
@@ -171,16 +196,18 @@ var chk={
         var reg_ret=iv.match(re);
         if(reg_ret == iv)
         {//yes
-            this.setpass(o);
+            return this.setpass(o);
         }else{//no
-            this.setban(o);
+            return this.setban(o);
         }
     },
     setpass:function(o){
         $(o).css({color:"green","background-color":"#DFF0D8"});
+        return true;
     },
     setban:function(o){
         $(o).css({color:"red","background-color":"#E3A5A2"});
+        return false;
     },
     checktest:function(){
 

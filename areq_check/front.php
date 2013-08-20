@@ -23,17 +23,17 @@
 <body>
 <form action="after.php" method="post" id="123_f">
     <div>UNAME</div>
-    <div><input type="text" name="uname" class="ck_uname" value="textvalue" /></div>
-    <div><input type='text' name="num1" class="ck_num otherclass" value="abc" /></div>
-    <div><input type="text" name="num2" class="ck_num otherclass" value="123" /></div>
-    <div><input type="text" name="email" class="ck_email" value="gaoc@kingnet.com" /></div>
-    <div><input type="text" name="name" class="ck_name" value="myname" /></div>
-    <div><input type="text" name="name" class="ck_pw" value="myupw" /></div>
-    <div><input type="text" name="name" class="ck_pw_again" value="myupw" /></div>
+    <div><label>ck_name</label><input type="text" name="uname" class="ck_name" value="textvalue" /></div>
+    <div><label>ck_num ck_name</label><input type='text' name="num1" class="ck_num ck_name" value="abc" /></div>
+    <div><label>ck_num</label><input type="text" name="num2" class="ck_num otherclass" value="123" /></div>
+    <div><label>ck_email</label><input type="text" name="email" class="ck_email" value="gaoc@kingnet.com" /></div>
+    <div><label>ck_name</label><input type="text" name="name" class="ck_name" value="myname" /></div>
+    <div><label>ck_pw</label><input type="text" name="name" class="ck_pw" value="myupw" /></div>
+    <div><label>ck_pw_again</label><input type="text" name="name" class="ck_pw_again" value="myupw" /></div>
 
     <div>
         <div><img src="vctest.php?gimg=getimg"></div>
-        <div><input type="text" name="vc" class="ck_vc" value="vc" /></div>
+        <div><label>ck_vc</label><input type="text" name="vc" class="ck_vc" value="vc" /></div>
     </div>
     <div></div>
     <div></div>

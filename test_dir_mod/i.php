@@ -6,7 +6,7 @@ and open the template in the editor.
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script type="text/javascript" src="../base_file/jq1.7min.js" />
+    <script type="text/javascript" src="../base_file/jq1.7min.js" ></script>
     <title></title>
 </head>
 <body>
