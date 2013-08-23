@@ -9,6 +9,13 @@
 class Adeal
 {
     public $debug=false;
+
+
+    /**数组递归替换接口vdeid
+     * @param array $pars hary:要替换的数组  rary:替换参数
+     * @return array
+     */
+
     public function array_replace($pars=array())
     {
         $ret=array(
