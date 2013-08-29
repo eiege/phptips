@@ -72,11 +72,12 @@ class dbl
      */
     public function presql($pars = array())
     {
+
         foreach ($pars as $k => $par_stu)
         {
             $stmt = $this->pdo->prepare($par_stu['sql']);
 
-            if (empty($pars_stu['pars']))
+            if (empty($par_stu['pars']))
             {
                 $stmt->execute();
                 $this->ret[] = $stmt->fetchAll();
@@ -96,7 +97,7 @@ class dbl
                         $$k = $v;
                     }
                     $stmt->execute();
-                    $this->ret[] = $stmt->fetchAll();
+                 //   $this->ret[] = $stmt->fetchAll();
                 }
 
             }

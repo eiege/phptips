@@ -35,6 +35,7 @@ $pars = array(
 $pdo->presql($pars);
 pm("show tables", $pdo->ret);
 
+$pdo->ret=array();
 $pars = array(
     array(
         "sql" => "insert into test_table (story) value (:story)",
@@ -58,6 +59,17 @@ $pars = array(
     ),
 );
 $pdo->presql($pars);
+
+
+$pdo->ret=array();
+$pars = array(
+    array(
+        "sql"  => "select * from test_table order by id desc ",
+        "pars" => array(),
+    ),
+);
+$pdo->presql($pars);
+pm("show tables", $pdo->ret);
 
 ?>
 
