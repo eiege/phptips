@@ -97,7 +97,12 @@ class dbl
                         $$k = $v;
                     }
                     $stmt->execute();
-                 //   $this->ret[] = $stmt->fetchAll();
+                    try{
+                        $this->ret[]=$stmt->fetchAll();
+                    }catch(Exception $e)
+                    {
+
+                    }
                 }
 
             }

@@ -41,19 +41,19 @@ $pars = array(
         "sql" => "insert into test_table (story) value (:story)",
         "pars" => array(
             array(
-                "story" => "zhongwen",
+                "story" => date("Y-m-d H:i:s",time()),
             ),
             array(
-                "story" => "zhongwen",
+                "story" => date("Y-m-d H:i:s",time()),
             ),
             array(
-                "story" => "zhongwen",
+                "story" => date("Y-m-d H:i:s",time()),
             ),
             array(
-                "story" => "zhongwen",
+                "story" => date("Y-m-d H:i:s",time()),
             ),
             array(
-                "story" => "zhongwen",
+                "story" => date("Y-m-d H:i:s",time()),
             ),
         ),
     ),
