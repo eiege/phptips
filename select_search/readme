@@ -1,1 +1,17 @@
 select项目搜索
+这个搜索不知道为什么在chrome中不能正常的运行(2013年9月2日16:12:25)
+因此,就做了另一种实现
+:
+在输出select的时候,生成一个所有option的备份.
+在keyup的时候,先清空select,之后将option克隆加入到之前清空的select中
+$(".class").clone().appendTo("# the select id");
+
+之后修改正则匹配后的逻辑处理过程
+
+                    if(!ret)
+                        {
+                            $(this).remove();
+                        }
+
+就是这样了.
+不过我觉得这种方法并不好,因为数据有了冗余,如果你有更好的方法.
