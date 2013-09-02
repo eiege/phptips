@@ -96,12 +96,12 @@ class dbl
                     {
                         $$k = $v;
                     }
-                    $stmt->execute();
+                    $exec_ret=$stmt->execute();
                     try{
                         $this->ret[]=$stmt->fetchAll();
                     }catch(Exception $e)
-                    {
-
+                    {//如果fetchAll执行错误,就将execute的值赋给ret.
+                        $this->ret[]=$exec_ret;
                     }
                 }
 
